@@ -10,6 +10,9 @@ public class Main {
 	public static void main(String[] args) {
 		String inputString = "( 23 + 34 ) * 5";
 		
+		ArithmeticOperation op = ArithmeticOperation.fromString("+");
+		
+
 		Calculator calculator = new Calculator(inputString);
 		double result = calculator.calculate();
 		

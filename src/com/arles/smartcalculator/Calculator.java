@@ -15,7 +15,7 @@ public class Calculator {
 		return 0.0;
 	}
 	
-	public static double evaluate(char operation, double leftOperand, double rightOperand) {
+	public static double evaluate(ArithmeticOperation operation, double leftOperand, double rightOperand) {
 		return 0;
 		
 	}

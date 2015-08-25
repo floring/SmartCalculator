@@ -3,9 +3,8 @@ package com.arles.smartcalculator;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class SimpleParser extends Parser {
-	
-	private String[] operations = {"+", "-"};
 
 	private List<String> mTokens;
 	private int mCurrentPosition;
@@ -22,6 +21,11 @@ public class SimpleParser extends Parser {
 
 	private double expr() {
 		double leftOperand = fact();
+		if(ArithmeticOperation.isAdditionOrSubstraction(peekNext())) {
+			ArithmeticOperation operation = ArithmeticOperation.fromString(readNext());
+			double rightOperand = expr();
+			return Calculator.evaluate(operation, leftOperand, rightOperand);
+		}
 
 		return 0.0;
 	}
@@ -37,9 +41,13 @@ public class SimpleParser extends Parser {
 		return 0.0;
 	}
 	
-	private String peek() {
+	private String peekNext() {
 		if(mCurrentPosition < mTokens.size()) return mTokens.get(mCurrentPosition);
 		throw new IndexOutOfBoundsException("Token's size less than current position");
+	}
+	
+	private String readNext() {
+		return mTokens.get(mCurrentPosition++);
 	}
 	
 	private void splitIntoTokens(String expression) {
