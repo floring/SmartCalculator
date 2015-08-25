@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SimpleParser extends Parser {
+	
+	private String[] operations = {"+", "-"};
 
 	private List<String> mTokens;
 	private int mCurrentPosition;
@@ -14,6 +16,7 @@ public class SimpleParser extends Parser {
 
 	@Override
 	public void parse() {
+		expr();
 		
 	}
 
