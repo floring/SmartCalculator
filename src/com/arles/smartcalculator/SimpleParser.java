@@ -1,5 +1,6 @@
 package com.arles.smartcalculator;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,9 +15,9 @@ public class SimpleParser extends Parser {
 	}
 
 	@Override
-	public void parse() {
-		expr();
-		
+	public double parse() {
+		double result = expr();
+		return result;
 	}
 
 	private double expr() {
@@ -26,19 +27,36 @@ public class SimpleParser extends Parser {
 			double rightOperand = expr();
 			return Calculator.evaluate(operation, leftOperand, rightOperand);
 		}
-
-		return 0.0;
+		return leftOperand;
 	}
 
 	private double fact() {
 		double leftOperand = term();
-
-		return 0.0;
+		if(ArithmeticOperation.isMultiplyOrDivision(peekNext())) {
+			ArithmeticOperation operation = ArithmeticOperation.fromString(readNext());
+			double rightOperand = expr();
+			return Calculator.evaluate(operation, leftOperand, rightOperand);
+		}
+		return leftOperand;
 	}
 	
 	private double term() {
-
-		return 0.0;
+		String token = peekNext();
+		if(StringUtil.isNumber(token)) {
+			return Double.parseDouble(readNext());
+		} else {
+			if(StringUtil.isOpenRoundBracket(peekNext())) {
+				readNext();
+				double result = expr();
+				if(StringUtil.isCloseRoundBracket(peekNext())) {
+					readNext();
+					return result;
+				} else {
+					throw new InputMismatchException("Error. Brackets mismatching.");
+				}
+			}
+		}
+		throw new InputMismatchException("Error. Invalid input expression.");
 	}
 	
 	private String peekNext() {
