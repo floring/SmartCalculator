@@ -1,5 +1,6 @@
 package com.arles.smartcalculator;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 
 public class SimpleParser extends Parser {
 
-	private List<String> mTokens;
+	private List<String> mTokens = new ArrayList<>();
 	private int mCurrentPosition;
 	
 	public SimpleParser(String expression) {
@@ -34,7 +35,7 @@ public class SimpleParser extends Parser {
 		double leftOperand = term();
 		if(ArithmeticOperation.isMultiplyOrDivision(peekNext())) {
 			ArithmeticOperation operation = ArithmeticOperation.fromString(readNext());
-			double rightOperand = expr();
+			double rightOperand = fact();
 			return Calculator.evaluate(operation, leftOperand, rightOperand);
 		}
 		return leftOperand;
@@ -60,8 +61,7 @@ public class SimpleParser extends Parser {
 	}
 	
 	private String peekNext() {
-		if(mCurrentPosition < mTokens.size()) return mTokens.get(mCurrentPosition);
-		throw new IndexOutOfBoundsException("Token's size less than current position");
+		return (mCurrentPosition < mTokens.size()) ? mTokens.get(mCurrentPosition) : "";
 	}
 	
 	private String readNext() {
