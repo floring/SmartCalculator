@@ -3,15 +3,21 @@ package com.arles.smartcalculator;
 public class Calculator {
 	
 	private String mInputString;
-	private Parser mParser;
 	
-	public Calculator(Parser parser, String string) {
-		mParser = parser;
+	public Calculator(String string) {
 		mInputString = string;
 	}
 	
 	public double calculate() {
-		throw new UnsupportedOperationException();
+		SimpleParser parser = new SimpleParser(mInputString);
+		
+		parser.parse();
+		return 0.0;
+	}
+	
+	public static double evaluate(char operation, double leftOperand, double rightOperand) {
+		return 0;
+		
 	}
 
 }
