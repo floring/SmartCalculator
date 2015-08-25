@@ -9,7 +9,11 @@ public class Main {
 		String inputString = "(23 + 34) * 5";
 		inputString = StringUtil.trimWhitespaces(inputString);
 		
-		System.out.println(inputString);
+		Parser parser = new SimpleParser();
+		Calculator calculator = new Calculator(parser, inputString);
+		double result = calculator.calculate();
+		
+		System.out.println(result);
 	}
 
 }
