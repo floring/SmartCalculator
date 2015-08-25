@@ -1,0 +1,2 @@
+# SmartCalculator
+Initial commit
