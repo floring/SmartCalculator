@@ -1,0 +1,41 @@
+// Pseudocode
+
+expr() {
+	leftOp = fract();
+	if(peek('+') || peek('-')) {
+		operation = read();
+		rightOp = expr();
+		return evaluate(leftOp, operation, rightOp);
+	}
+	return leftOp;
+}
+
+fract() {
+	leftOp = term();
+	if(peek('*') || peek('/')) {
+		operation = read();
+		rightOp = fract();
+		return evaluate(leftOp, operation, rightOp);
+	}
+	return leftOp;
+}
+
+term() {
+	if(peek() is number) {
+		number = read();
+		return number;
+	} else {
+		if(peek('(')) {
+			read('(');
+			result = expr();
+			if(peek(')') {
+				read(')');
+				return result;
+			} else {
+				return "error. Brackets mismatching";
+			}
+		}
+	}
+	return "error. Input string is incorrect";
+}
+	
