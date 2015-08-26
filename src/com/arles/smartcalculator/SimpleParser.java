@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  * This class implements parsing of given expression.
@@ -17,6 +18,7 @@ public class SimpleParser extends Parser {
 
 	private List<String> mTokens = new ArrayList<>();
 	private int mCurrentPosition;
+	private final String DELEMITERS = "()+-*/";
 	
 	public SimpleParser(String expression) {
 		splitIntoTokens(expression);
@@ -76,11 +78,10 @@ public class SimpleParser extends Parser {
 	}
 	
 	private void splitIntoTokens(String expression) {
-		Scanner scanner = new Scanner(expression);
-		while (scanner.hasNext()) {
-			mTokens.add(scanner.next());
-		}
-		scanner.close();
+		StringTokenizer st = new StringTokenizer(expression, DELEMITERS, true);
+		while (st.hasMoreTokens()) {
+			mTokens.add(st.nextToken());
+	     }
 	}
 
 }
