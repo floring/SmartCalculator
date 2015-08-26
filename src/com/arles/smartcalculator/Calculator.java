@@ -1,5 +1,10 @@
 package com.arles.smartcalculator;
 
+/**
+ * Calculator class invokes parse method and evaluate expression, which is returned.
+ * @author Admin
+ *
+ */
 public class Calculator {
 
 	private String mInputString;

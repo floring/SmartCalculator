@@ -38,4 +38,6 @@ term() {
 	}
 	return "error. Input string is incorrect";
 }
+
+peekNext
 	

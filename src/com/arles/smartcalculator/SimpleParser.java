@@ -5,7 +5,14 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+ * This class implements parsing of given expression.
+ * The expression is a character-numeric string, whose value should be calculated.
+ * The string consists of numbers separated by round brackets - '(', ')', arithmetic operations - '+', '-', '*', '/' and whitespaces. 
+ * For example: (23 + 5.6) * 2.
+ * @author Admin
+ *
+ */
 public class SimpleParser extends Parser {
 
 	private List<String> mTokens = new ArrayList<>();

@@ -1,5 +1,10 @@
 package com.arles.smartcalculator;
 
+/**
+ * Contains enum of mathematical operations implemented in the Calculator.  
+ * @author Admin
+ *
+ */
 public enum ArithmeticOperation {
 	plus("+"), minus("-"), multiply("*"), divide("/");
 
