@@ -11,7 +11,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String inputString = "(2.3 + 5)";
+		String inputString = "(20+34)*3/2";
 		inputString = StringUtil.trimWhitespaces(inputString);
 		
 		Calculator calculator = new Calculator(inputString);
